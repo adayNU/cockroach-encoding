@@ -1,4 +1,4 @@
-// Copyright 2014 The Cockroach Authors.
+// Copyright 2017 The Cockroach Authors.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -11,20 +11,14 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
 // implied. See the License for the specific language governing
 // permissions and limitations under the License.
-//
-// Author: Tobias Schottdorf (tobias.schottdorf@gmail.com)
 
-package encoding_test
+package timeutil
 
 import (
-	"os"
-	"testing"
-
-	_ "github.com/cockroachdb/cockroach/util/log" // for flags
-	"github.com/cockroachdb/cockroach/util/randutil"
+	"time"
 )
 
-func TestMain(m *testing.M) {
-	randutil.SeedForTests()
-	os.Exit(m.Run())
+// Now returns the current UTC time.
+func Now() time.Time {
+	return time.Now().UTC()
 }

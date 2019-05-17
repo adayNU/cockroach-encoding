@@ -1,7 +1,5 @@
-This is an extraction of the cockroach/util/duration and /encoding
-directories and LICENSE, pinned at upstream commit:
-
-  00f697c9bacc16549ffeaeebd321b02f9ee19406
+This is an extraction of github.com/cockroach/cockroach-db/pkg/util/encoding,
+supporting util/ packages and LICENSE, pinned at upstream version tag v2.1.7.
 
 It was extracted to enable dependency pinning with a much smaller repo
 than the full https://github.com/cockroachdb/cockroach repo.

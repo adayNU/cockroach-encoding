@@ -1,4 +1,4 @@
-// Copyright 2015 The Cockroach Authors.
+// Copyright 2017 The Cockroach Authors.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -11,30 +11,17 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
 // implied. See the License for the specific language governing
 // permissions and limitations under the License.
-//
-// Author: Peter Mattis (peter@cockroachlabs.com)
 
-// +build 386 amd64
+package timeutil_test
 
-package encoding
+import (
+	"os"
+	"testing"
 
-import "unsafe"
+	"github.com/jgraettinger/cockroach-encoding/randutil"
+)
 
-// The idea for the fast ones complement is borrowed from fastXORBytes
-// in the crypto standard library.
-const wordSize = int(unsafe.Sizeof(uintptr(0)))
-
-func onesComplement(b []byte) {
-	n := len(b)
-	w := n / wordSize
-	if w > 0 {
-		bw := *(*[]uintptr)(unsafe.Pointer(&b))
-		for i := 0; i < w; i++ {
-			bw[i] = ^bw[i]
-		}
-	}
-
-	for i := w * wordSize; i < n; i++ {
-		b[i] = ^b[i]
-	}
+func TestMain(m *testing.M) {
+	randutil.SeedForTests()
+	os.Exit(m.Run())
 }
